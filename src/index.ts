@@ -23,4 +23,8 @@ async function init() {
   console.log('     npm run dev');
 }
 
-init();
+try {
+  init();
+} catch (e: any) {
+  console.error(e);
+}
