@@ -1,0 +1,9 @@
+node_modules
+*.log
+.env
+.env.*
+!.env.example
+.vscode
+.DS_Store
+dist
+*-project

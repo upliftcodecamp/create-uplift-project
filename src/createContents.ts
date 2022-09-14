@@ -1,0 +1,77 @@
+import fs from 'node:fs/promises';
+import process from 'node:process';
+import path from 'node:path';
+
+const CURR_DIR = process.cwd();
+
+const copy = async (src: string, dest: string) => {
+  const stat = await fs.stat(src);
+  if (stat.isDirectory()) {
+    copyDir(src, dest);
+  } else {
+    await fs.copyFile(src, dest);
+  }
+};
+
+const copyDir = async (srcDir: string, destDir: string) => {
+  await fs.mkdir(destDir, { recursive: true });
+  const files = await fs.readdir(srcDir);
+
+  for (const file of files) {
+    const srcFile = path.resolve(srcDir, file);
+    const destFile = path.resolve(destDir, file);
+    copy(srcFile, destFile);
+  }
+};
+
+const write = async (file: string, templatePath: string, content?: string) => {
+  const targetPath = path.join(CURR_DIR, file);
+  if (content) {
+    await fs.writeFile(targetPath, content);
+  } else {
+    await copy(path.join(templatePath, file), targetPath);
+  }
+};
+
+
+const createContents = async (templatePath: string, newProjectPath: string) => {
+  const filesToCreate = await fs.readdir(templatePath);
+
+  // const filesToCreate = fs.readdirSync(templatePath);
+
+  const filteredFiles = filesToCreate.filter(
+    (file: string) => file !== 'package.json'
+  );
+
+  for (const file of filteredFiles) {
+    write(file, newProjectPath);
+  }
+
+  const pkg = JSON.parse(
+    await fs.readFile(path.join(templatePath, 'package.json'), 'utf-8')
+  );
+
+  pkg.name = newProjectPath;
+
+  write('package.json', newProjectPath, JSON.stringify(pkg, null, 2));
+
+
+
+  // filesToCreate.forEach(async (file) => {
+  //   const origFilePath = `${templatePath}/${file}`;
+
+  // get stats about the current file
+  // const stats = await fs.stat(origFilePath);
+
+  // console.log(file, typeof file);
+
+  // if (stats.isFile()) {
+  //   const contents = await fs.readFile(origFilePath, 'utf8');
+
+  //   const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
+  //   await fs.writeFile(writePath, contents, 'utf8');
+  // }
+  // });
+};
+
+export default createContents;

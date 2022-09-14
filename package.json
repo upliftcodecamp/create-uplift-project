@@ -1,0 +1,25 @@
+{
+  "name": "create-uplift-project",
+  "version": "0.1.0",
+  "description": "Generate Uplift Projects",
+  "main": "index.js",
+  "type": "module",
+  "author": "Jay Are Galinada <jayaregalinada@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^9.1.1"
+  },
+  "bin": {
+    "create-uplift-project": "index.js"
+  },
+  "devDependencies": {
+    "unbuild": "^0.8.11"
+  },
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  }
+}
