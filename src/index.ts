@@ -9,14 +9,13 @@ import createContents from './createContents';
 async function init() {
   const { projectChoice, projectName } = await inquirer.prompt(questions);
 
-  const templateDir = path.resolve(
+  const templatePath = path.resolve(
     fileURLToPath(import.meta.url),
     '../..',
     `${projectChoice}`
   );
 
-  const contents = await createContents(templateDir, projectName);
-
+  const contents = await createContents(templatePath, projectName);
 }
 
 init();
