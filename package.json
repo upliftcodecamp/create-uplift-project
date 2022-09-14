@@ -18,9 +18,18 @@
   },
   "scripts": {
     "dev": "unbuild --stub",
-    "build": "unbuild"
+    "build": "unbuild",
+    "prepublishOnly": "npm run build"
   },
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayaregalinada/create-uplift-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jayaregalinada/create-uplift-project/issues"
+  },
+  "homepage": "https://github.com/jayaregalinada/create-uplift-project"
 }
