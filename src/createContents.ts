@@ -24,8 +24,18 @@ const copyDir = async (srcDir: string, destDir: string) => {
   }
 };
 
-const write = async (file: string, templatePath: string, content?: string) => {
-  const targetPath = path.join(CURR_DIR, file);
+const write = async (
+  file: string,
+  templatePath: string,
+  newProjectPath: string,
+  content?: string
+) => {
+  const targetPath = path.join(
+    CURR_DIR,
+    newProjectPath,
+    renameFiles[file] ?? file
+  );
+
   if (content) {
     await fs.writeFile(targetPath, content);
   } else {
@@ -33,6 +43,9 @@ const write = async (file: string, templatePath: string, content?: string) => {
   }
 };
 
+const renameFiles: Record<string, string> = {
+  _gitignore: '.gitignore',
+};
 
 const createContents = async (templatePath: string, newProjectPath: string) => {
   const filesToCreate = await fs.readdir(templatePath);
@@ -44,7 +57,7 @@ const createContents = async (templatePath: string, newProjectPath: string) => {
   );
 
   for (const file of filteredFiles) {
-    write(file, newProjectPath);
+    write(file, templatePath, newProjectPath);
   }
 
   const pkg = JSON.parse(
@@ -54,8 +67,6 @@ const createContents = async (templatePath: string, newProjectPath: string) => {
   pkg.name = newProjectPath;
 
   write('package.json', newProjectPath, JSON.stringify(pkg, null, 2));
-
-
 
   // filesToCreate.forEach(async (file) => {
   //   const origFilePath = `${templatePath}/${file}`;
