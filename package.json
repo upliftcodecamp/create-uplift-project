@@ -13,6 +13,7 @@
     "create-uplift-project": "index.js"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.1",
     "unbuild": "^0.8.11"
   },
   "scripts": {

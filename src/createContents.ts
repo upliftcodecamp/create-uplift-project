@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import process from 'node:process';
 import path from 'node:path';
 
@@ -6,6 +7,7 @@ const CURR_DIR = process.cwd();
 
 const copy = async (src: string, dest: string) => {
   const stat = await fs.stat(src);
+
   if (stat.isDirectory()) {
     copyDir(src, dest);
   } else {
@@ -45,9 +47,23 @@ const write = async (
 
 const renameFiles: Record<string, string> = {
   _gitignore: '.gitignore',
+  _eslintignore: '.eslintignorerc',
+  _eslintrc: '.eslintrc',
+  _stylelintrc: '.stylelintrc',
+};
+
+const createDirectory = async (newProjectPath: string) => {
+  const targetPath = path.join(CURR_DIR, newProjectPath);
+  if (!existsSync(targetPath)) {
+    await fs.mkdir(targetPath, { recursive: true });
+  }
 };
 
 const createContents = async (templatePath: string, newProjectPath: string) => {
+  console.log('Creating directory ...');
+
+  await createDirectory(newProjectPath);
+
   const filesToCreate = await fs.readdir(templatePath);
 
   // const filesToCreate = fs.readdirSync(templatePath);
@@ -66,7 +82,12 @@ const createContents = async (templatePath: string, newProjectPath: string) => {
 
   pkg.name = newProjectPath;
 
-  write('package.json', newProjectPath, JSON.stringify(pkg, null, 2));
+  write(
+    'package.json',
+    templatePath,
+    newProjectPath,
+    JSON.stringify(pkg, null, 2)
+  );
 
   // filesToCreate.forEach(async (file) => {
   //   const origFilePath = `${templatePath}/${file}`;
