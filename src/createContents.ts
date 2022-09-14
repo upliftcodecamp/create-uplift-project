@@ -60,13 +60,9 @@ const createDirectory = async (newProjectPath: string) => {
 };
 
 const createContents = async (templatePath: string, newProjectPath: string) => {
-  console.log('Creating directory ...');
-
   await createDirectory(newProjectPath);
 
   const filesToCreate = await fs.readdir(templatePath);
-
-  // const filesToCreate = fs.readdirSync(templatePath);
 
   const filteredFiles = filesToCreate.filter(
     (file: string) => file !== 'package.json'
@@ -89,21 +85,7 @@ const createContents = async (templatePath: string, newProjectPath: string) => {
     JSON.stringify(pkg, null, 2)
   );
 
-  // filesToCreate.forEach(async (file) => {
-  //   const origFilePath = `${templatePath}/${file}`;
-
-  // get stats about the current file
-  // const stats = await fs.stat(origFilePath);
-
-  // console.log(file, typeof file);
-
-  // if (stats.isFile()) {
-  //   const contents = await fs.readFile(origFilePath, 'utf8');
-
-  //   const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
-  //   await fs.writeFile(writePath, contents, 'utf8');
-  // }
-  // });
+  return newProjectPath;
 };
 
 export default createContents;

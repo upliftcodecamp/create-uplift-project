@@ -15,7 +15,12 @@ async function init() {
     `${projectChoice}`
   );
 
-  const contents = await createContents(templatePath, projectName);
+  const projectPath = await createContents(templatePath, projectName);
+
+  console.log('Done 👍. Now run:');
+  console.log(`     cd ${projectPath}`);
+  console.log('     npm install');
+  console.log('     npm run dev');
 }
 
 init();
