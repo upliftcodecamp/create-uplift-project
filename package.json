@@ -1,6 +1,6 @@
 {
   "name": "create-uplift-project",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generate Uplift Projects",
   "main": "index.js",
   "type": "module",
