@@ -47,7 +47,7 @@ const write = async (
 
 const renameFiles: Record<string, string> = {
   _gitignore: '.gitignore',
-  _eslintignore: '.eslintignorerc',
+  _eslintignore: '.eslintignore',
   _eslintrc: '.eslintrc',
   _stylelintrc: '.stylelintrc',
 };
