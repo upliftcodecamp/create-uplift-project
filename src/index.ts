@@ -5,9 +5,14 @@ import questions from './questions';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import createContents from './createContents';
+import process from 'node:process';
 
 async function init() {
-  const { projectChoice, projectName } = await inquirer.prompt(questions);
+  const [, , directory] = process.argv;
+
+  const { projectChoice, projectName } = await inquirer.prompt(questions, {
+    projectName: directory,
+  });
 
   const templatePath = path.resolve(
     fileURLToPath(import.meta.url),
@@ -20,7 +25,6 @@ async function init() {
   console.log('Done 👍. Now run:');
   console.log(`     cd ${projectPath}`);
   console.log('     npm install');
-  console.log('     npm run dev');
 }
 
 try {

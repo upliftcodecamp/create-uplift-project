@@ -10,6 +10,10 @@ const questions: QuestionCollection = [
         name: 'React',
         value: 'template-react',
       },
+      {
+        name: 'Express (Minimal)',
+        value: 'template-express-minimal',
+      }
     ],
   },
   {
