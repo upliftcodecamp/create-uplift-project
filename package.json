@@ -1,19 +1,21 @@
 {
   "name": "create-uplift-project",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "Generate Uplift Projects",
   "main": "index.js",
   "type": "module",
   "author": "Jay Are Galinada <jayaregalinada@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "inquirer": "^9.1.1"
+    "inquirer": "^9.1.1",
+    "minimist": "^1.2.8"
   },
   "bin": {
     "create-uplift-project": "index.js"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.1",
+    "@types/minimist": "^1.2.2",
     "unbuild": "^0.8.11"
   },
   "scripts": {
@@ -26,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jayaregalinada/create-uplift-project.git"
+    "url": "git+https://github.com/upliftcodecamp/create-uplift-project.git"
   },
   "bugs": {
-    "url": "https://github.com/jayaregalinada/create-uplift-project/issues"
+    "url": "https://github.com/upliftcodecamp/create-uplift-project/issues"
   },
-  "homepage": "https://github.com/jayaregalinada/create-uplift-project"
+  "homepage": "https://github.com/upliftcodecamp/create-uplift-project"
 }

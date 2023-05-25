@@ -1,57 +1,27 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true
+    "es2020": true
   },
   "extends": [
-    "airbnb",
-    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "eslint:recommended"
+    "plugin:react-hooks/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "import/extensions": [0, "always"],
-    "@html-eslint/indent": ["error", 2],
-    "@html-eslint/require-closing-tags": [
-      "error",
-      {
-        "selfClosing": "always"
-      }
-    ],
-    "react/jsx-one-expression-per-line": [0, { "allow": "literal" }],
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "never"
-      }
-    ]
-  },
-  "plugins": ["html", "@html-eslint"],
-  "overrides": [
-    {
-      "files": ["*.html"],
-      "parser": "@html-eslint/parser",
-      "extends": ["plugin:@html-eslint/recommended"]
-    }
-  ],
   "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": [["@", "./src"]],
-        "extensions": [".jsx", ".js"]
-      }
+    "react": {
+      "version": "18.2"
     }
+  },
+  "plugins": [
+    "react-refresh"
+  ],
+  "rules": {
+    "react-refresh/only-export-components": "warn"
   }
 }
