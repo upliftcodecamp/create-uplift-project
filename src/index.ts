@@ -23,7 +23,7 @@ async function init() {
 
   const { projectChoice, projectName } = await inquirer.prompt(questions, {
     projectName: directory,
-    projectChoice: `template-${template}`,
+    projectChoice: !template ? undefined : `template-${template}`,
   });
 
   const templatePath = path.resolve(
