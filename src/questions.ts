@@ -12,7 +12,7 @@ const questions: QuestionCollection = [
       },
       {
         name: 'Express (Minimal)',
-        value: 'template-express-minimal',
+        value: 'template-express',
       },
       {
         name: 'Vanilla',
